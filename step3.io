@@ -1,5 +1,5 @@
 Curses begin
-Curses move(0, 0) write("Enter a number of steps to calculate: ") refresh
+Curses move(0, 0) write("Enter a comma seperated list: ") refresh
 input := Sequence clone
 
 loop(
