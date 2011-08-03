@@ -2,10 +2,18 @@ UserInput := Object clone
 
 UserInput get := method(m,
 
-reader := ReadLine
+reader := ReadLine 
+
+reader loadHistory
 
 reader prompt = m .. " > "
 
-reader readLine
+line := reader readLine
+
+reader addHistory(line)
+
+reader saveHistory
+
+return line
 
 )
