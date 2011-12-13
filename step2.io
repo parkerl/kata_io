@@ -1,28 +1,27 @@
-i := 1
-x := 0
-z := 1
+Step2 := Object clone
 
+Step2 num := 0
 
-Curses do(
-begin
-
+Step2 getNumber := method(
+  u := UserInput clone
+  self num = u get("Enter a number") asNumber
 )
 
-Curses move(0, 0) write("Enter a number of steps to calculate: ") refresh
-input := Sequence clone
-
-loop(
-  c := Curses asyncReadCharacter
-    if(c) then(        
-      if(c == 13, break) 
-      input append(c)    
-      Curses writeCharacter(c)
-      Curses refresh     
-    ) else(System sleep(0.05); yield)
+Step2 print_fibs := method(num,
+  i := 1
+  x := 0
+  z := 1
+  "Printing the first " print 
+  num print
+  " fibs" print
+  x println
+  (num - 1) repeat(z println; z = x + i; x = i; i = z)
+  x
 )
 
-Curses end
+Step2 run := method(
 
-"Printing fibs to : " print input println
-x println
-input asNumber repeat(z println; z = x + i; x = i; i = z)
+  num := self getNumber
+  self print_fibs(num)
+
+)

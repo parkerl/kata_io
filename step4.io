@@ -1,7 +1,5 @@
 u := UserInput clone
 
-input := Sequence clone
-
 D := u get("Enter a diameter") asNumber
 
 v := u get("Enter a velocity") asNumber
