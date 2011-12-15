@@ -14,9 +14,13 @@ Step2 print_fibs := method(num,
   "Printing the first " print 
   num print
   " fibs" print
-  x println
-  (num - 1) repeat(z println; z = x + i; x = i; i = z)
+  self printnum(x)
+  (num - 1) repeat(self printnum(z); z = x + i; x = i; i = z)
   x
+)
+
+Step2 printnum := method( num,
+  num println
 )
 
 Step2 run := method(

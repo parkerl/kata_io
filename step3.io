@@ -1,21 +1,19 @@
-Curses begin
-Curses move(0, 0) write("Enter a comma seperated list: ") refresh
-input := Sequence clone
+Step3 := Object clone
 
-loop(
-  c := Curses asyncReadCharacter
-    if(c) then(        
-      if(c == 13, break) 
-      input append(c)    
-      Curses writeCharacter(c)
-      Curses refresh     
-    ) else(System sleep(0.05); yield)
+
+Step3 getInput := method(
+  u := UserInput clone
+
+  values := u get("Enter a comma separated list: ")
 )
 
-Curses end
-
-l := input split(",")
+Step3 sort := method(values,
+l := values split(",")
 
 l = l sort
+)
 
-l print
+Step3 run := method(
+  self sort(self getInput) print
+)
+

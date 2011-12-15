@@ -1,15 +1,30 @@
+Step4 := Object clone do(
 u := UserInput clone
 
-D := u get("Enter a diameter") asNumber
+get_input := method(
+  
+  self D := u get("Enter a diameter") asNumber
 
-v := u get("Enter a velocity") asNumber
+  self v := u get("Enter a velocity") asNumber
 
-rho := u get("Enter a density") asNumber
+  self rho := u get("Enter a density") asNumber
 
-mu := u get("Enter a viscosity") asNumber
+  self mu := u get("Enter a viscosity") asNumber
+)
 
-flow := (D*v*rho)/mu
+flow := method( (D*v*rho)/mu)
 
-flow print " " print
+run := method(
+  get_input
+  flow print " " print
 
- if(flow<2100) then("Laminar" println) elseif(flow<=4000) then("Transient" println) else("Turbulent" println)
+  if(flow<2100) /
+    then("Laminar" println) /
+  elseif(flow<=4000) /
+    then("Transient" println) /
+  else("Turbulent" println)
+ )
+)
+ 
+
+ 
