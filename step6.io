@@ -1,11 +1,18 @@
-u := UserInput clone
+Step6 := Object clone do(
+    u := UserInput clone
 
-result := ""
-
-while ((calc := u get("")) != "exit",
- if(result == "") then(calc print; result := doString(calc)) else(calc = result asString .. calc; calc print; result := doString(result asString .. calc))
-
-" = " print result println
- 
+    result := ""
+    calculate := method(
+        input,
+       if(result == "") \ 
+          then(result = doString(input)) \ 
+        else(result = doString(result asString .. input))
+                  )
+      while ((calc := u get("")) != "exit",
+          calculate(calc)
+          calc print
+          " = " print
+           result println
+           
+       )
  )
- 

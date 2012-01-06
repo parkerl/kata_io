@@ -1,26 +1,38 @@
+Step5 := Object clone do(
+u := UserInput clone
 
- u := UserInput clone
+get_input := method(
+  
+  self D := u get("Enter a diameter") asNumber
 
-input := Sequence clone
+  self v := u get("Enter a velocity") asNumber
 
-again := true
+  self rho := u get("Enter a density") asNumber
 
-while (again,
+  self mu := u get("Enter a viscosity") asNumber
+)
 
-D := u get("Enter a diameter") asNumber
+flow := method( (D*v*rho)/mu)
 
-v := u get("Enter a velocity") asNumber
+do_calc := method(
+  get_input
+  flow print " " print
 
-rho := u get("Enter a density") asNumber
+  if(flow<2100)     then("Laminar" println)   elseif(flow<=4000)     then("Transient" println)  else("Turbulent" println)
+)
 
-mu := u get("Enter a viscosity") asNumber
+run_again := method(
+w := false
+if((u get("Calculate again (y|n)")=="y")) then( w = true) 
+w
+)
 
-flow := (D*v*rho)/mu
-
-flow print " " print
-
- if(flow<2100) then("Laminar" println) elseif(flow<=4000) then("Transient" println) else("Turbulent" println)
- 
-if((u get("Calculate again (y|n)"))=="y") then(again = true) else (again = false)
- 
+run := method(
+  again := true
+ while(again,
+  do_calc 
+  again = run_again
+  )
  )
+)
+
